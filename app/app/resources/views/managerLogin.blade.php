@@ -29,7 +29,17 @@
         </form>
     </div>
 
-    <div style="height:10%"></div>
+    <div style="height:10%; text-align:center; color:red; font-size: 20px; font-weight:bold">
+        @if (session('failed')) 
+        <p>{{session('failed')}}</p>
+        @endif
+        @error('username')
+        <p>{{$message}}</p>
+        @enderror
+        @error('password')
+        <p>{{$message}}</p>
+        @enderror
+    </div>
 
     <div style="text-align:center;">
         <button type="submit" form="login" style="border-radius:25px; font-size:40px; height:6vh; width:12vw; padding:10px; background-color:red; color:white; font-weight:bold">
