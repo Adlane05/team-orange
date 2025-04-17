@@ -15,7 +15,6 @@ Route::get('/login/employees', function () {
     return view('employeeLogin');
 });
 Route::post('/login/employees', function (Request $request) {
-
     $input_name = $request->input("username");
     $employee = DB::table("employees")->where("employee_id", $input_name)->first();
     if (isset($employee)) {
@@ -29,7 +28,14 @@ Route::post('/login/employees', function (Request $request) {
 Route::get('/login/managers', function () {
     return view('managerLogin');
 });
-Route::post('/login/managers', function () {
+Route::post('/login/managers', function (Request $request) {
+    $input_name = $request->input("username");
+    $input_password = e($request->input("password"));
+    $employee = DB::table("employees")->where("role", "supervisor")->where("employee_id", $input_name)->where("password_hash", $input_password)->first(); // DOES NOT USE HASHING TO CHECK PASSWORD
+    if (isset($employee)) {
+        return redirect()->to('/login/employees')->send();  // MAKE THIS REDIRECT TO THE MAIN PAGE WHEN FINISHED
+    } else {
     return view('managerLogin');
+    }
 });
 

@@ -15,13 +15,17 @@
         </header>
     </div>
 
-    <div style="height:25%"></div>
+    <div style="height:10%"></div>
 
-    <div style="text-align:center;">
+    <div style="text-align:center; display:block">
         <form action="" method="POST" id="login">
             @csrf
-            <label for="username" style="font-size:40px">Supervisor ID</label><br><br>
-            <input type="text" id="username" name="username" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:50px;">
+            <label for="username" style="font-size:40px;">Supervisor ID</label> <br><br>
+            <input type="text" id="username" name="username" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:50px; margin-bottom:3%;"> <br>
+            
+            <label for="password" style="font-size:40px;">Supervisor Password</label> <br><br>
+            <input type="password" id="password" name="password" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:50px;">
+
         </form>
     </div>
 
