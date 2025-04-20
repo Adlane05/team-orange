@@ -2,20 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\EmployeesController;
 
 Route::get('/', function () {
-    return redirect()->to('/login/employees')->send();
+    return redirect()->to('/employees/login')->send();
 });
 Route::get('/login', function () {
-    return redirect()->to('/login/employees')->send();
+    return redirect()->to('/employees/login')->send();
 });
 
 
-Route::get('/login/employees', function () {
+Route::get('/employees/login', function () {
     return view('employeeLogin');
 });
-Route::post('/login/employees', function (Request $request) {
-
+Route::post('/employees/login', function (Request $request) {
     $validatedData = $request->validate(
         [
         "username" => ["required"],
@@ -29,18 +29,17 @@ Route::post('/login/employees', function (Request $request) {
     $input_name = $validatedData['username'];
     $employee = DB::table("employees")->where("employee_id", $input_name)->first();
     if (isset($employee)) {
-        return redirect()->to('/search')->send();
+        return redirect()->to('/employees/search')->send();
     } else {
     return redirect()->back()->with("failed", "ID is incorrect");
     }
 });
 
 
-Route::get('/login/managers', function () {
+Route::get('/managers/login', function () {
     return view('managerLogin');
 });
-Route::post('/login/managers', function (Request $request) {
-
+Route::post('/managers/login', function (Request $request) {
     $validatedData = $request->validate(
         [
         "username" => ["required"],
@@ -55,11 +54,23 @@ Route::post('/login/managers', function (Request $request) {
     $input_name = $validatedData["username"];
     $input_password = e($validatedData["password"]);
 
-    $employee = DB::table("employees")->where("role", "supervisor")->where("employee_id", $input_name)->where("password_hash", $input_password)->first(); // DOES NOT USE HASHING TO CHECK PASSWORD
+    $employee = DB::table("employees")
+    ->where("role", "supervisor")
+    ->where("employee_id", $input_name)
+    ->where("password_hash", $input_password)
+    ->first(); // DOES NOT USE HASHING TO CHECK PASSWORD
+
     if (isset($employee)) {
-        return redirect()->to('/search')->send();  // MAKE THIS REDIRECT TO THE MAIN PAGE WHEN FINISHED
+        return redirect()->to('managers/search')->send();
     } else {
         return redirect()->back()->with("failed", "Username or Password is incorrect");
     }
 });
 
+Route::get('/employees/search', function () {
+    return view('employeeSearch');
+});
+
+Route::get('/managers/search', function () {
+    return view('managerSearch');
+});

@@ -50,7 +50,7 @@
     <div style="height:20%"></div>
 
     <div style="text-align:center;">
-        <a href="/login/employees" style="text-decoration:none; color:red; font-size:30px; font-weight:bold;">Employee Login<a>
+        <a href="/employees/login" style="text-decoration:none; color:red; font-size:30px; font-weight:bold;">Employee Login<a>
     </div>
 
     </body>

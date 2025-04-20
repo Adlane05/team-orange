@@ -43,7 +43,7 @@
     <div style="height:20%"></div>
 
     <div style="text-align:center;">
-        <a href="/login/managers" style="text-decoration:none; color:red; font-size:30px; font-weight:bold;">Supervisor Login<a>
+        <a href="/managers/login" style="text-decoration:none; color:red; font-size:30px; font-weight:bold;">Supervisor Login<a>
     </div>
 
     </body>
