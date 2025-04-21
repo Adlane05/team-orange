@@ -78,3 +78,7 @@ Route::get('/managers/search', function () {
 Route::get('/managers/create/products', function () {
     return view('addProducts');
 });
+
+Route::get('/managers/create/others', function () {
+    return view('addOthers');
+});
