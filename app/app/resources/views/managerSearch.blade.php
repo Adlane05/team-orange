@@ -32,8 +32,8 @@
                     <td>Category</td>
                     <td>Tags</td>
                     <td style="width:3vw; text-align:left">
-                        <a>     <!-- MAKE THIS REDIRECT TO THE "ADD PRODUCT" PAGE WHENEVER THAT GETS FINISHED -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
+                        <a href = "/managers/create/products">
+                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; color:black;">
                                 add_circle
                             </span>
                         </a>

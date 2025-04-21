@@ -74,3 +74,7 @@ Route::get('/employees/search', function () {
 Route::get('/managers/search', function () {
     return view('managerSearch');
 });
+
+Route::get('/managers/create/products', function () {
+    return view('addProducts');
+});
