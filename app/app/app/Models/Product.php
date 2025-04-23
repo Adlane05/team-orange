@@ -49,4 +49,8 @@ class Product extends Model
         return $allProducts;
     }
 
+    public function deleteProduct($productID) {
+        DB::delete("DELETE FROM product WHERE product_id = (?)", [$productID]);
+    }
+
 }

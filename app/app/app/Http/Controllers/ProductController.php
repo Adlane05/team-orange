@@ -56,4 +56,9 @@ class ProductController extends Controller
         $products = $productObject->getAllProductInfo();
         return $products;
     }
+
+    public static function deleteProduct($productID) {
+        $product = new Product();
+        $product->deleteProduct($productID);
+    }
 }

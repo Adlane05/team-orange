@@ -41,118 +41,33 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="border:1px solid black;">
-                    <td style="padding-left:10px; padding:10px; width:10vw">00001</td>
-                    <td>Product 1</td>
-                    <td>Category</td>
-                    <td>Tag, Tag</td>
-                    <td style="width:3vw; text-align:left">
-                        <a>     <!-- MAKE THIS REDIRECT TO THE "EDIT" PAGE WHENEVER THAT GETS FINISHED -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                edit
-                            </span>
-                        </a>
-                        <a>     <!-- MAKE THIS CALL WHATEVER DELETE FUNCTION I'VE IMPLEMENTED LATER -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                delete
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-                <tr style="border:1px solid black;">
-                    <td style="padding-left:10px; padding:10px; width:10vw">00002</td>
-                    <td>Product 2</td>
-                    <td>Category</td>
-                    <td>Tag, Tag</td>
-                    <td style="width:3vw; text-align:left">
-                        <a>     <!-- MAKE THIS REDIRECT TO THE "EDIT" PAGE WHENEVER THAT GETS FINISHED -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                edit
-                            </span>
-                        </a>
-                        <a>     <!-- MAKE THIS CALL WHATEVER DELETE FUNCTION I'VE IMPLEMENTED LATER -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                delete
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-                <tr style="border:1px solid black;">
-                    <td style="padding-left:10px; padding:10px; width:10vw">00003</td>
-                    <td>Product 3</td>
-                    <td>Category</td>
-                    <td>Tag, Tag</td>
-                    <td style="width:3vw; text-align:left">
-                        <a>     <!-- MAKE THIS REDIRECT TO THE "EDIT" PAGE WHENEVER THAT GETS FINISHED -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                edit
-                            </span>
-                        </a>
-                        <a>     <!-- MAKE THIS CALL WHATEVER DELETE FUNCTION I'VE IMPLEMENTED LATER -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                delete
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-                <tr style="border:1px solid black;">
-                    <td style="padding-left:10px; padding:10px; width:10vw">00004</td>
-                    <td>Product 4</td>
-                    <td>Category</td>
-                    <td>Tag, Tag</td>
-                    <td style="width:3vw; text-align:left">
-                        <a>     <!-- MAKE THIS REDIRECT TO THE "EDIT" PAGE WHENEVER THAT GETS FINISHED -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                edit
-                            </span>
-                        </a>
-                        <a>     <!-- MAKE THIS CALL WHATEVER DELETE FUNCTION I'VE IMPLEMENTED LATER -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                delete
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-
-
-
-                
                 @foreach ($productInfo as $product)
                 <tr style="border:1px solid black;">
                 <td style="padding-left:10px; padding:10px; width:10vw">{{$product->product_id}}</td>
                 <td>{{$product->product_name}}</td>
                 <td>{{$product->category_name}}</td>
                 <td>{{$product->tags}}</td>
-                    <?php
-                    // $html = "";
-                    // $tags = explode(",", $product->tags);
-                    // if(count($tags) > 0) {
-                    //     foreach($tags as $tag) {
-                    //         echo "<td>$tag</td>";
-                    //     }
-                    // } else {
-                    //     echo "<td></td>";
-                    // }
-                    ?>
-
+                <form method="POST">
+                    @csrf
                     <td style="width:3vw; text-align:left">
-                        <a>     <!-- MAKE THIS REDIRECT TO THE "EDIT" PAGE WHENEVER THAT GETS FINISHED -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                edit
-                            </span>
-                        </a>
-                        <a>     <!-- MAKE THIS CALL WHATEVER DELETE FUNCTION I'VE IMPLEMENTED LATER -->
-                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
-                                delete
-                            </span>
-                        </a>
+                        <button type="submit" style="all:unset; cursor:pointer">
+                            <a>     <!-- MAKE THIS REDIRECT TO THE "EDIT" PAGE WHENEVER THAT GETS FINISHED -->
+                                <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
+                                    edit
+                                </span>
+                            </a>
+                        </button>
+                        <button type="submit" name="delete" value="{{$product->product_id}}" style="all:unset; cursor:pointer">
+                            <a>     <!-- MAKE THIS CALL WHATEVER DELETE FUNCTION I'VE IMPLEMENTED LATER -->
+                                <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
+                                        delete
+                                </span>
+                            </a>
+                        </button>
+                    </form>
                     </td>
                 </tr>
                 @endforeach
-
-
-
-                
             </tbody>
         </table>
     </div>

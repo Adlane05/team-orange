@@ -78,6 +78,15 @@ Route::get('/managers/search', function () {
     return view('managerSearch', ["productInfo" => $productInfo]);
 });
 
+Route::post('/managers/search', function (Request $request) {
+    if(isset($request->delete)) {
+        ProductController::deleteProduct(e($request->delete));
+    }
+
+    $productInfo = ProductController::getProducts();
+    return view('managerSearch', ["productInfo" => $productInfo]);
+});
+
 Route::get('/managers/create/products', function () {
     $categories = CategoryController::getData();
     $tags = TagController::getData();
