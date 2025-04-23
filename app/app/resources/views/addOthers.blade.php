@@ -20,8 +20,14 @@
     <div style="text-align:center; display:flex; width:60%; margin-left:20%; margin-right:20%; margin-top:5vh;">
         <div style="padding-left:2vw;">
             <form id="createUser" action="" method="POST"> 
+            @csrf
                 <label for="username" style="font-size:40px">Username</label> <br>
                 <input type="text" name="username" id="username" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                @if($errors->has('username'))
+                    <p style="height:1vh;">{{$errors->first('username')}}</p>
+                @else
+                <p style="height:1vh;"></p>
+                @endif
                 <button type="submit" form="createUser" style="border-radius:25px; font-size:40px; height:6vh; width:15vw; margin-top: 2vh; background-color:red; color:white; font-weight:bold">
                     Add User
                 </button>
@@ -32,8 +38,14 @@
 
         <div>
             <form id="createTag" action="" method="POST"> 
+            @csrf
                 <label for="tag" style="font-size:40px">Tag</label> <br>
                 <input type="text" name="tag" id="tag" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                @if($errors->has('tag'))
+                    <p style="height:1vh;">{{$errors->first('tag')}}</p>
+                @else
+                <p style="height:1vh;"></p>
+                @endif
                 <button type="submit" form="createTag" style="border-radius:25px; font-size:40px; height:6vh; width:15vw; margin-top: 2vh; background-color:red; color:white; font-weight:bold">
                     Add Tag
                 </button>
@@ -43,9 +55,15 @@
         <div style="width:20vw;"></div>
 
         <div style="padding-right:2vw;">
-            <form id="createCategory" action="" method="POST"> 
+            <form id="createCategory" action="" method="POST">
+            @csrf 
                 <label for="category" style="font-size:40px">Category</label> <br>
                 <input type="text" name="category" id="category" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                @if($errors->has('category'))
+                    <p style="height:1vh;">{{$errors->first('category')}}</p>
+                @else
+                <p style="height:1vh;"></p>
+                @endif
                 <button type="submit" form="createCategory" style="border-radius:25px; font-size:40px; height:6vh; width:15vw; margin-top: 2vh; background-color:red; color:white; font-weight:bold">
                     Add Category
                 </button>

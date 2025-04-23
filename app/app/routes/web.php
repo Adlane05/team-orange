@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return redirect()->to('/employees/login')->send();
@@ -80,5 +80,17 @@ Route::get('/managers/create/products', function () {
 });
 
 Route::get('/managers/create/others', function () {
+    return view('addOthers');
+});
+
+Route::post('/managers/create/others', function (Request $request) {
+    if (isset($request['username'])) {
+        echo "Username added";
+    } else if (isset($request['category'])) {
+        CategoryController::verifyData($request);
+    } else if (isset($request['tag'])) {
+        echo "Tag added";
+    }
+    
     return view('addOthers');
 });
