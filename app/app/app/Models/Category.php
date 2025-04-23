@@ -37,7 +37,8 @@ class Category extends Model
     }
 
     public function getCategory() {
-
+        $categoryID = DB::select("SELECT category_id FROM category WHERE category_name = (?)", [$this->category_name])[0]->category_id;
+        return $categoryID;
     }
 
     public function getAllCategory() {

@@ -35,11 +35,13 @@ class Tag extends Model
 
     }
 
-    public function getTag() {
-
+    public function getTagID() {
+        $tagID = DB::select("SELECT tag_id FROM tag WHERE tag_name = (?)", [$this->tagName])[0]->tag_id;
+        return $tagID;
     }
 
     public function getAllTag() {
         return DB::select('select * from tag');
     }
+
 }

@@ -58,7 +58,7 @@
                         <select id="tag1" name="tag[]" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
                             @foreach ($tags as $tag)
-                            <option value="option{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
+                            <option value="{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -72,7 +72,7 @@
                         <select id="category" name="category" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
                             @foreach ($categories as $category)
-                            <option value="option{{ $category->category_id }}">{{$category->category_name}}</option>
+                            <option value="{{ $category->category_id }}">{{$category->category_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -84,7 +84,7 @@
                         <select id="tag2" name="tag[]" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
                             @foreach ($tags as $tag)
-                            <option value="option{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
+                            <option value="{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -105,7 +105,7 @@
                         <select id="tag3" name="tag[]" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
                             @foreach ($tags as $tag)
-                            <option value="option{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
+                            <option value="{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
                             @endforeach
                         </select>
                     </div>

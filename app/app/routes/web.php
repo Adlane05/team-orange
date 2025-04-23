@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return redirect()->to('/employees/login')->send();
@@ -73,7 +74,8 @@ Route::get('/employees/search', function () {
 });
 
 Route::get('/managers/search', function () {
-    return view('managerSearch');
+    $productInfo = ProductController::getProducts();
+    return view('managerSearch', ["productInfo" => $productInfo]);
 });
 
 Route::get('/managers/create/products', function () {
@@ -88,19 +90,7 @@ Route::post('/managers/create/products', function (Request $request) {
     $categories = CategoryController::getData();
     $tags = TagController::getData();
 
-    $validatedData = $request->validate([
-        "productName" => ["required"],
-        "category" => ["required"],
-        "productCode" => ["required"],
-        "tag" => ["array"],
-        "tag.*" => ["distinct"]
-    ],
-    [
-        "productName.required" => "Product Name cannot be empty",
-        "category.required" => "Category cannot be empty",
-        "productCode.required" => "Product Code cannot be empty",
-        "tag.*.distinct" => "Tags must be unique"
-    ]);
+    ProductController::addProduct($request);
 
     return view('addProducts', ["categories" => $categories, "tags" => $tags]);
 });
@@ -113,9 +103,9 @@ Route::post('/managers/create/others', function (Request $request) {
     if (isset($request['username'])) {
         echo "Username added";
     } else if (isset($request['category'])) {
-        CategoryController::verifyData($request);
+        CategoryController::addCategory($request);
     } else if (isset($request['tag'])) {
-        TagController::verifyData($request);
+        TagController::addTag($request);
     }
     
     return view('addOthers');

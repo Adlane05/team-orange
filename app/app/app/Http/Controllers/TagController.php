@@ -7,7 +7,7 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
-    public static function verifyData(Request $request) {
+    private static function verifyData(Request $request) {
         $validatedData = $request->validate(
             [
             "tag" => ["required"],
@@ -16,13 +16,17 @@ class TagController extends Controller
                 "tag.required" => "Tag name cannot be empty",
             ]
         );
+       return $validatedData;
+    }
 
-        $tagName = e($validatedData["tag"]);
+    public static function addTag(Request $request) {
+        $data = self::verifyData($request);
+
+        $tagName = e($data["tag"]);
         
         $tag = new Tag();
         $tag->__constructWithParams($tagName);
         $tag->addTag(); // DOES NOT CHECK IF CATEGORY NAME IS UNIQUE
-
     }
 
     public static function getData() {
@@ -32,4 +36,9 @@ class TagController extends Controller
         return $tags;
     }
 
+    public static function getTagID($tagName) {
+        $tag = new Tag();
+        $tag->__constructWithParams($tagName);
+        return $tag->getTagID();
+    }
 }
