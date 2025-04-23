@@ -76,7 +76,8 @@ Route::get('/managers/search', function () {
 });
 
 Route::get('/managers/create/products', function () {
-    return view('addProducts');
+    $categories = CategoryController::getData();
+    return view('addProducts')->with("categories", $categories);
 });
 
 Route::get('/managers/create/others', function () {
@@ -87,7 +88,8 @@ Route::post('/managers/create/others', function (Request $request) {
     if (isset($request['username'])) {
         echo "Username added";
     } else if (isset($request['category'])) {
-        CategoryController::verifyData($request);
+        // CategoryController::verifyData($request);
+        CategoryController::getData();
     } else if (isset($request['tag'])) {
         echo "Tag added";
     }

@@ -41,7 +41,7 @@ class Category extends Model
     }
 
     public function getAllCategory() {
-
+        return DB::select('select * from category');
     }
 
 

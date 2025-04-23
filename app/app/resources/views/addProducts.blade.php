@@ -54,9 +54,9 @@
                     <label for="category" style="display: block; width: 100%; text-align: center; font-size:20px">Category</label>
                         <select id="category" name="category" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
+                            @foreach ($categories as $category)
+                            <option value="option{{ $category->category_id }}">{{$category->category_name}}</option>
+                            @endforeach
                         </select>
                     </div>
 

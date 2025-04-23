@@ -25,5 +25,12 @@ class CategoryController extends Controller
 
     }
 
+    public static function getData() {
+        $category = new Category();
+        $categories = $category->getAllCategory();
+
+        return $categories;
+    }
+
 
 }
