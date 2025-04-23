@@ -25,7 +25,7 @@ class Category extends Model
     public function addCategory() {
         if (isset($this->categoryName)) {
             DB::insert('insert into category (category_name) values (?)', [$this->categoryName]);
-        }
+        }   // MAKE SURE THIS CAN HANDLE UNIQUE CONSTRAINTS
     }
 
     public function deleteCategory() {

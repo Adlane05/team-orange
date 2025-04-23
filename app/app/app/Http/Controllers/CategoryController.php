@@ -21,7 +21,7 @@ class CategoryController extends Controller
         
         $category = new Category();
         $category->__constructWithParams($categoryName);
-        $category->addCategory();
+        $category->addCategory(); // DOES NOT CHECK IF CATEGORY NAME IS UNIQUE
 
     }
 

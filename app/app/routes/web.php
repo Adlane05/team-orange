@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 Route::get('/', function () {
     return redirect()->to('/employees/login')->send();
@@ -77,7 +78,10 @@ Route::get('/managers/search', function () {
 
 Route::get('/managers/create/products', function () {
     $categories = CategoryController::getData();
-    return view('addProducts')->with("categories", $categories);
+    $tags = TagController::getData();
+    return view('addProducts', ["categories" => $categories, "tags" => $tags]);
+    // MAKE SURE THAT THE VIEW WILL HAVE A UNIQUE CONSTRAINT FOR THE TAGS
+    // SO THAT DUPLICATE TAGS AREN'T ASSIGNED TO PRODUCTS
 });
 
 Route::get('/managers/create/others', function () {
@@ -88,10 +92,9 @@ Route::post('/managers/create/others', function (Request $request) {
     if (isset($request['username'])) {
         echo "Username added";
     } else if (isset($request['category'])) {
-        // CategoryController::verifyData($request);
-        CategoryController::getData();
+        CategoryController::verifyData($request);
     } else if (isset($request['tag'])) {
-        echo "Tag added";
+        TagController::verifyData($request);
     }
     
     return view('addOthers');
