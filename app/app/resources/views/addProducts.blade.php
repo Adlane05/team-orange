@@ -21,13 +21,30 @@
         <button type="submit" form="create" style="border-radius:25px; font-size:40px; height:6vh; width:12vw; background-color:red; color:white; font-weight:bold;">
             Submit      <!--    THIS FORM DOES NOT HAVE IMPLEMENTED FUNCTIONALITY, NO POST REQUEST HANDLING MADE YET    -->
         </button>
+        @if($errors->has('productName'))
+            <p style="height:1vh;">{{$errors->first('productName')}}</p>
+        @elseif($errors->has('productCode'))
+            <p style="height:1vh;">{{$errors->first('productCode')}}</p>
+        @elseif($errors->has('category'))
+            <p style="height:1vh;">{{$errors->first('category')}}</p>
+        @elseif($errors->has('tag.0'))
+            <p style="height:1vh;">{{$errors->first('tag.0')}}</p>
+        @elseif($errors->has('tag.1'))
+            <p style="height:1vh;">{{$errors->first('tag.1')}}</p>
+        @elseif($errors->has('tag.2'))
+            <p style="height:1vh;">{{$errors->first('tag.2')}}</p>
+        @else
+            <p style="height:1vh;"></p>
+        @endif
     </div>
 
 
     <div style="height:60%; margin-left:15vw; margin-right:15vw; text-align:left; padding-top:3vh;">
         <form action="" method="POST" id="create">
+            @csrf
+
             <div style="display:flex; justify-content:center;">
-                
+
             <div style="width:min-content;">
                     <div style="width: fit-content;">
                         <label for="productName" style="display: block; width: 100%; text-align: center; font-size:20px">Product Name</label>
@@ -38,7 +55,7 @@
 
                     <div style="width: fit-content; margin-top:10%">
                         <label for="tag1" style="display: block; width: 100%; text-align: center; font-size:20px">Tag</label>
-                        <select id="tag1" name="tag1" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
+                        <select id="tag1" name="tag[]" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
                             @foreach ($tags as $tag)
                             <option value="option{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
@@ -64,7 +81,7 @@
 
                     <div style="width: fit-content; margin-top:10%">
                         <label for="tag2" style="display: block; width: 100%; text-align: center; font-size:20px">Tag</label>
-                        <select id="tag2" name="tag2" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
+                        <select id="tag2" name="tag[]" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
                             @foreach ($tags as $tag)
                             <option value="option{{ $tag->tag_id }}">{{$tag->tag_name}}</option>
@@ -85,7 +102,7 @@
 
                     <div style="width: fit-content; margin-top:10%">
                         <label for="tag3" style="display: block; width: 100%; text-align: center; font-size:20px">Tag</label>
-                        <select id="tag3" name="tag3" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
+                        <select id="tag3" name="tag[]" style="border-radius:15px; border:3px solid black; height:6vh; width:14vw; padding:10px;">
                             <option value="none" selected disabled hidden></option>
                             @foreach ($tags as $tag)
                             <option value="option{{ $tag->tag_id }}">{{$tag->tag_name}}</option>

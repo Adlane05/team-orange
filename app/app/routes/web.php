@@ -84,6 +84,27 @@ Route::get('/managers/create/products', function () {
     // SO THAT DUPLICATE TAGS AREN'T ASSIGNED TO PRODUCTS
 });
 
+Route::post('/managers/create/products', function (Request $request) {
+    $categories = CategoryController::getData();
+    $tags = TagController::getData();
+
+    $validatedData = $request->validate([
+        "productName" => ["required"],
+        "category" => ["required"],
+        "productCode" => ["required"],
+        "tag" => ["array"],
+        "tag.*" => ["distinct"]
+    ],
+    [
+        "productName.required" => "Product Name cannot be empty",
+        "category.required" => "Category cannot be empty",
+        "productCode.required" => "Product Code cannot be empty",
+        "tag.*.distinct" => "Tags must be unique"
+    ]);
+
+    return view('addProducts', ["categories" => $categories, "tags" => $tags]);
+});
+
 Route::get('/managers/create/others', function () {
     return view('addOthers');
 });
