@@ -75,13 +75,36 @@ Route::get('/employees/search', function () {
     return view('employeeSearch', ["productInfo" => $productInfo]);
 });
 
+Route::post('/employees/search', function (Request $request) {
+    if (isset($request->search)) {
+        if(trim($request->productName) == "") {
+            $productInfo = ProductController::getProducts();
+            return view('employeeSearch', ["productInfo" => $productInfo]);
+        } else {
+        $productInfo = ProductController::getOneProductByName(e($request->productName));
+        return view('employeeSearch', ["productInfo" => $productInfo]);
+        }
+    } else {
+        $productInfo = ProductController::getProducts();
+        return view('employeeSearch', ["productInfo" => $productInfo]);
+    }
+});
+
 Route::get('/managers/search', function () {
     $productInfo = ProductController::getProducts();
     return view('managerSearch', ["productInfo" => $productInfo]);
 });
 
 Route::post('/managers/search', function (Request $request) {
-    if(isset($request->delete)) {
+    if (isset($request->search)) {
+        if(trim($request->productName) == "") {
+            $productInfo = ProductController::getProducts();
+            return view('managerSearch', ["productInfo" => $productInfo]);
+        } else {
+        $productInfo = ProductController::getOneProductByName(e($request->productName));
+        return view('managerSearch', ["productInfo" => $productInfo]);
+        }
+    } else if(isset($request->delete)) {
         ProductController::deleteProduct(e($request->delete));
         return redirect()->to("managers/search");
     } else if (isset($request->update)) {

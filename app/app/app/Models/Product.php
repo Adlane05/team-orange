@@ -50,7 +50,7 @@ class Product extends Model
     }
 
     public function getOneProductInfo() {
-        $products = DB::select("SELECT p.*, c.category_name, GROUP_CONCAT(t.tag_name) AS tags
+        $product = DB::select("SELECT p.*, c.category_name, GROUP_CONCAT(t.tag_name) AS tags
         FROM product p
         JOIN category c ON p.category_id = c.category_id
         LEFT JOIN products_tag_pivot pt ON p.product_id = pt.product_id
@@ -58,7 +58,19 @@ class Product extends Model
         WHERE p.product_id = (?)
         GROUP BY p.product_id, p.product_name, p.category_id, c.category_name", [$this->productCode]);
 
-        return $products;
+        return $product;
+    }
+
+    public function getOneProductInfoByName($productName) {
+        $product = DB::select("SELECT p.*, c.category_name, GROUP_CONCAT(t.tag_name) AS tags
+        FROM product p
+        JOIN category c ON p.category_id = c.category_id
+        LEFT JOIN products_tag_pivot pt ON p.product_id = pt.product_id
+        LEFT JOIN tag t ON pt.tag_id = t.tag_id
+        WHERE LOWER(p.product_name) LIKE (?)
+        GROUP BY p.product_id, p.product_name, p.category_id, c.category_name", ["%" . strtolower($productName) . "%"]);
+
+        return $product;
     }
 
     public function deleteProduct($productID) {

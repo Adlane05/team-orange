@@ -63,6 +63,11 @@ class ProductController extends Controller
         return $product->getOneProductInfo();
     }
 
+    public static function getOneProductByName($productName) {
+        $product = new Product();
+        return $product->getOneProductInfoByName($productName);
+    }
+
     public static function deleteProduct($productID) {
         $product = new Product();
         $product->deleteProduct($productID);
