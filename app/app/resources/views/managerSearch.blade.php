@@ -50,15 +50,15 @@
                 <form method="POST">
                     @csrf
                     <td style="width:3vw; text-align:left">
-                        <button type="submit" style="all:unset; cursor:pointer">
-                            <a>     <!-- MAKE THIS REDIRECT TO THE "EDIT" PAGE WHENEVER THAT GETS FINISHED -->
+                        <button type="submit" name="update" value="{{$product->product_id}}" style="all:unset; cursor:pointer">
+                            <a>
                                 <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
                                     edit
                                 </span>
                             </a>
                         </button>
                         <button type="submit" name="delete" value="{{$product->product_id}}" style="all:unset; cursor:pointer">
-                            <a>     <!-- MAKE THIS CALL WHATEVER DELETE FUNCTION I'VE IMPLEMENTED LATER -->
+                            <a>
                                 <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
                                         delete
                                 </span>

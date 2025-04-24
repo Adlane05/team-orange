@@ -61,6 +61,7 @@ Route::post('/managers/login', function (Request $request) {
     ->where("employee_id", $input_name)
     ->where("password_hash", $input_password)
     ->first(); // DOES NOT USE HASHING TO CHECK PASSWORD
+    // MAKE A NEW CLASS FOR EMPLOYEES SO THAT THIS DOESN'T HAPPEN HERE
 
     if (isset($employee)) {
         return redirect()->to('managers/search')->send();
@@ -70,7 +71,8 @@ Route::post('/managers/login', function (Request $request) {
 });
 
 Route::get('/employees/search', function () {
-    return view('employeeSearch');
+    $productInfo = ProductController::getProducts();
+    return view('employeeSearch', ["productInfo" => $productInfo]);
 });
 
 Route::get('/managers/search', function () {
@@ -81,18 +83,19 @@ Route::get('/managers/search', function () {
 Route::post('/managers/search', function (Request $request) {
     if(isset($request->delete)) {
         ProductController::deleteProduct(e($request->delete));
+        return redirect()->to("managers/search");
+    } else if (isset($request->update)) {
+        return redirect()->route('update')->with("product_id", $request->update);
+    } else {
+        $productInfo = ProductController::getProducts();
+        return view('managerSearch', ["productInfo" => $productInfo]);
     }
-
-    $productInfo = ProductController::getProducts();
-    return view('managerSearch', ["productInfo" => $productInfo]);
 });
 
 Route::get('/managers/create/products', function () {
     $categories = CategoryController::getData();
     $tags = TagController::getData();
     return view('addProducts', ["categories" => $categories, "tags" => $tags]);
-    // MAKE SURE THAT THE VIEW WILL HAVE A UNIQUE CONSTRAINT FOR THE TAGS
-    // SO THAT DUPLICATE TAGS AREN'T ASSIGNED TO PRODUCTS
 });
 
 Route::post('/managers/create/products', function (Request $request) {
@@ -119,3 +122,23 @@ Route::post('/managers/create/others', function (Request $request) {
     
     return view('addOthers');
 });
+
+Route::get('/managers/update', function () {
+    $categories = CategoryController::getData();
+    $tags = TagController::getData();
+
+    $productInfo = ProductController::getOneProduct(session("product_id"));
+
+    return view('updateProducts', ["categories" => $categories, "tags" => $tags, "product" => $productInfo[0]]);
+})->name("update");
+
+Route::post('/managers/update', function (Request $request) {
+    ProductController::deleteProduct(e($request->originalProductCode));
+    ProductController::addProduct($request);
+
+    // THIS SHOULD BE A TEMPORARY SOLUTION
+    // IT'S PROBABLY BETTER TO UPDATE THE DATABASE LATER SO THAT
+    // THE PRODUCT CODE IS NOT THE PRIMARY KEY OF THE PRODUCT TABLE.
+    // MAKE A NEW COLUMN FOR THE CODE SO THAT IT CAN BE UPDATED PROPERLY
+    return redirect()->to("managers/search");
+})->name("update");
