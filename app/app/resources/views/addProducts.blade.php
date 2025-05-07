@@ -48,7 +48,7 @@
             <div style="width:min-content;">
                     <div style="width: fit-content;">
                         <label for="productName" style="display: block; width: 100%; text-align: center; font-size:20px">Product Name</label>
-                        <input type="text" id="productName" name="productName" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
+                        <input type="text" id="productName" name="productName" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
                     </div>
 
                     <div style="height:15vh"></div>
@@ -95,7 +95,7 @@
                 <div style="width:min-content;">
                     <div style="width: fit-content;">
                         <label for="productCode" style="display: block; width: 100%; text-align: center; font-size:20px">Product Code</label>
-                        <input type="text" id="productCode" name="productCode" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
+                        <input type="text" id="productCode" name="productCode" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
                     </div>
 
                     <div style="height:15vh"></div>

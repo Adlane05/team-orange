@@ -22,7 +22,7 @@
             <form id="createUser" action="" method="POST"> 
             @csrf
                 <label for="username" style="font-size:40px">Username</label> <br>
-                <input type="text" name="username" id="username" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                <input type="text" name="username" id="username" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
                 @if($errors->has('username'))
                     <p style="height:1vh;">{{$errors->first('username')}}</p>
                 @else
@@ -40,7 +40,7 @@
             <form id="createTag" action="" method="POST"> 
             @csrf
                 <label for="tag" style="font-size:40px">Tag</label> <br>
-                <input type="text" name="tag" id="tag" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                <input type="text" name="tag" id="tag" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
                 @if($errors->has('tag'))
                     <p style="height:1vh;">{{$errors->first('tag')}}</p>
                 @else
@@ -58,7 +58,7 @@
             <form id="createCategory" action="" method="POST">
             @csrf 
                 <label for="category" style="font-size:40px">Category</label> <br>
-                <input type="text" name="category" id="category" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                <input type="text" name="category" id="category" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
                 @if($errors->has('category'))
                     <p style="height:1vh;">{{$errors->first('category')}}</p>
                 @else
