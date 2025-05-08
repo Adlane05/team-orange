@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EmployeesController;
 
 Route::get('/', function () {
     return redirect()->to('/employees/login')->send();
@@ -113,7 +114,7 @@ Route::get('/managers/create/others', function () {
 
 Route::post('/managers/create/others', function (Request $request) {
     if (isset($request['username'])) {
-        echo "Username added";
+        EmployeesController::addEmployee($request);
     } else if (isset($request['category'])) {
         CategoryController::addCategory($request);
     } else if (isset($request['tag'])) {

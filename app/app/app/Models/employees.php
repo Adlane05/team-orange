@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class employees extends Model
-{
+{   
     private $employee_id;
-    private $user_name;
+    private $user_name = "";
     private $password_hash;
     private $role;
 
@@ -25,11 +25,11 @@ class employees extends Model
     }
 
     public function addEmployee() {
-        DB::insert("insert into employees(employee_id, user_name, role) values (?,?,?)", [$this->employeeID, $this->user_name, "employee"]);
+        DB::insert("insert into employees(employee_id, user_name, role) values (?,?,?)", [$this->employee_id, $this->user_name, "employee"]);
     }
 
     public function addManager() {
-        DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?)", [$this->employeeID, $this->user_name, $this->password_hash, "manager"]);
+        DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?,?)", [$this->employee_id, $this->user_name, $this->password_hash, "manager"]);
     }
 
 }
