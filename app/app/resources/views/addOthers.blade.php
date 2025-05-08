@@ -28,6 +28,8 @@
                 @else
                 <p style="height:1vh;"></p>
                 @endif
+                <label for="password" style="font-size:40px">Password</label> <br>
+                <input type="text" name="password" id="password" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
                 <button type="submit" form="createUser" style="border-radius:25px; font-size:40px; height:6vh; width:15vw; margin-top: 2vh; background-color:red; color:white; font-weight:bold">
                     Add User
                 </button>
