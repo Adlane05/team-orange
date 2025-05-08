@@ -35,7 +35,7 @@
             <img src="/images/logo.png" style="height:50px; padding:15px">
                 <div>
                         <label for="productName" style="display: block; width: 100%; text-align: center; font-size:20px">Product Name</label>
-                        <input type="text" id="productName" name="productName" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
+                        <input type="text" id="productName" name="productName" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
                 </div>
             <button style="padding-right:30px; font-size:40px; font-weight:bold; color:white; background-color:black; border:none;">FR</button>
         </header>

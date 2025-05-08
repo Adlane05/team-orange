@@ -75,21 +75,6 @@ Route::get('/employees/search', function () {
     return view('employeeSearch', ["productInfo" => $productInfo]);
 });
 
-Route::post('/employees/search', function (Request $request) {
-    if (isset($request->search)) {
-        if(trim($request->productName) == "") {
-            $productInfo = ProductController::getProducts();
-            return view('employeeSearch', ["productInfo" => $productInfo]);
-        } else {
-        $productInfo = ProductController::getOneProductByName(e($request->productName));
-        return view('employeeSearch', ["productInfo" => $productInfo]);
-        }
-    } else {
-        $productInfo = ProductController::getProducts();
-        return view('employeeSearch', ["productInfo" => $productInfo]);
-    }
-});
-
 Route::get('/managers/search', function () {
     $productInfo = ProductController::getProducts();
     return view('managerSearch', ["productInfo" => $productInfo]);
