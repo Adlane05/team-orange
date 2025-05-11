@@ -9,7 +9,20 @@
         tbody tr:nth-child(odd) {
             background-color:#adadad;
         }
-    </style>
+
+        * {
+            scrollbar-width:none;
+        }
+
+        #sidebar li {
+            padding: 10px 20px;
+        }
+
+        #sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+  </style>
     
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -30,7 +43,7 @@
 
 <body style="margin:0px; height:100%; background-color:#d9d9d9; font-family: Helvetica, Sans-Serif;">
 
-    <div style="background-color:black; padding:10px;">
+<div style="background-color:black; padding:10px;">
         <header style="color:white;  display:flex; justify-content:space-between; ">
             <img src="/images/logo.png" style="height:50px; padding:15px">
                 <div>
@@ -41,6 +54,28 @@
         </header>
     </div>
 
+<nav id="sidebar" style="width: 200px; background-color: black; color: white; height: 100%; padding-top: 20px; position: relative; float: left;">
+    <ul style="padding: 0; margin: 0; list-style-type: none; ">
+        <li>
+            <a href="#">Products</a>
+        </li>
+        <li>
+            <a href="#">Tags</a>
+        </li>
+        <li>
+            <a href="#">Categories</a>
+        </li>
+        <li>
+            <a href="#">Users</a>
+        </li>
+        <li>
+            <a href="#">Logout</a>
+        </li>
+    </ul>
+  </nav>
+
+<main style="height:100%; margin-left: 200px;">
+    
     <div style="height:10%"></div>
 
     <div style="text-align:center; height:60%; overflow-y:scroll; overflow-x:hidden; scrollbar-width:none; font-weight:bold;">
@@ -91,6 +126,7 @@
             </tbody>
         </table>
     </div>
+</main>
 </body>
 
 </html>
