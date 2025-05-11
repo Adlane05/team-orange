@@ -93,6 +93,11 @@ Route::post('/managers/search', function (Request $request) {
     }
 });
 
+Route::get('/managers/search/tags', function () {
+    $tagInfo = TagController::getData();
+    return view('managersSearchTags', ["tagInfo" => $tagInfo]);
+});
+
 Route::get('/managers/create/products', function () {
     $categories = CategoryController::getData();
     $tags = TagController::getData();

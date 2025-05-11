@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            scrollbar-width:none;
+        }
+
+        #sidebar li {
+            padding: 10px 20px;
+        }
+
+        #sidebar li:hover {
+            background-color:#d9d9d9;
+            color:black;
+        }
+
+        #sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+  </style>
 </head>
 <body style="margin:0px; height:100%; width:100%; background-color:#d9d9d9; font-family: Helvetica, Sans-Serif;">
 
@@ -14,6 +33,38 @@
         </header>
     </div>
 
+    
+<nav id="sidebar" style="width: 200px; background-color: black; color: white; height: 100%; padding-top: 20px; position: relative; float: left;">
+    <ul style="padding: 0; margin: 0; list-style-type: none;">
+        <a href="/managers/search">
+            <li>
+                <span>Products<span>
+            </li>
+        </a>
+        <a href="#">
+            <li>
+                <span>Tags<span>
+            </li>
+        </a>
+        <a href="#">
+            <li>
+                <span>Categories</span>
+            </li>
+        </a>
+        <a href="#">
+            <li>
+                <span>Users</span>
+            </li>
+        </a>
+        <a href="/managers/login">
+            <li>
+                <span>Logout</span>
+            </li>
+        </a>
+    </ul>
+  </nav>
+
+  <main style="height:100%; margin-left: 200px;">
     <div style="height:40%; background-color:black;"></div>
 
 
@@ -72,6 +123,7 @@
             </form>
         </div>
     </div>
+    </main>
 
 </div>
 

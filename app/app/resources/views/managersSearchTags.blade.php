@@ -51,10 +51,6 @@
     <div style="background-color:black; padding:10px;">
         <header style="color:white;  display:flex; justify-content:space-between; ">
             <img src="/images/logo.png" style="height:50px; padding:15px">
-                <div>
-                        <label for="productName" style="display: block; width: 100%; text-align: center; font-size:20px">Product Name</label>
-                        <input type="text" id="productName" name="productName" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
-                </div>
             <button style="padding-right:30px; font-size:40px; font-weight:bold; color:white; background-color:black; border:none;">FR</button>
         </header>
     </div>
@@ -97,12 +93,10 @@
         <table style="margin-left:auto; margin-right:auto; border-collapse:collapse; width:900px; text-align:left;">
             <thead>
                 <tr style="border:1px solid black;">
-                    <td style="padding-left:10px; padding:10px; width:10vw">Product Code</td>
-                    <td>Product Name</td>
-                    <td>Category</td>
-                    <td>Tags</td>
+                    <td style="padding-left:10px; padding:10px; width:10vw">Tag ID</td>
+                    <td>Tag Name</td>
                     <td style="width:3vw; text-align:left">
-                        <a href = "/managers/create/products">
+                        <a href = "/managers/create/others">
                             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; color:black;">
                                 add_circle
                             </span>
@@ -111,23 +105,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($productInfo as $product)
+                @foreach ($tagInfo as $tag)
                 <tr style="border:1px solid black;">
-                <td style="padding-left:10px; padding:10px; width:10vw">{{$product->product_id}}</td>
-                <td>{{$product->product_name}}</td>
-                <td>{{$product->category_name}}</td>
-                <td>{{$product->tags}}</td>
+                <td style="padding-left:10px; padding:10px; width:10vw">{{$tag->tag_id}}</td>
+                <td>{{$tag->tag_name}}</td>
                 <form method="POST">
                     @csrf
                     <td style="width:3vw; text-align:left">
-                        <button type="submit" name="update" value="{{$product->product_id}}" style="all:unset; cursor:pointer">
+                        <button type="submit" name="update" value="{{$tag->tag_id}}" style="all:unset; cursor:pointer">
                             <a>
                                 <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
                                     edit
                                 </span>
                             </a>
                         </button>
-                        <button type="submit" name="delete" value="{{$product->product_id}}" style="all:unset; cursor:pointer">
+                        <button type="submit" name="delete" value="{{$tag->tag_id}}" style="all:unset; cursor:pointer">
                             <a>
                                 <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
                                         delete

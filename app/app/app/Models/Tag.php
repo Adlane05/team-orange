@@ -41,7 +41,7 @@ class Tag extends Model
     }
 
     public function getAllTag() {
-        return DB::select('select * from tag');
+        return DB::select('select tag_id, tag_name from tag');
     }
 
 }
