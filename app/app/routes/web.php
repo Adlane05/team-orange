@@ -195,6 +195,18 @@ Route::get('/managers/search/employees', function () {
     return view('managersSearchEmployees', ["employeeInfo" => $employeeInfo]);
 });
 
+Route::post('/managers/search/employees', function (Request $request) {
+    if(isset($request->delete)) {
+        EmployeesController::deleteEmployee($request->delete);
+        return redirect()->to("managers/search/employees");
+    } else if (isset($request->update)) {
+        return redirect()->route('updateCategories')->with("category_id", $request->update);
+    } else {
+        $employeeInfo = EmployeesController::getAllEmployees();
+        return view('managersSearchEmployees', ["employeeInfo" => $employeeInfo]);
+    }
+});
+
 
 Route::post('/managers/create/others', function (Request $request) {
     if (isset($request['username'])) {

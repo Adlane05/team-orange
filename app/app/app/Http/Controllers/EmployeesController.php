@@ -20,6 +20,11 @@ class EmployeesController extends Controller
         }
     }
 
+    public static function deleteEmployee($employeeID) {
+        $employee = new employees();
+        $employee->deleteEmployee($employeeID);
+    }
+
     public static function getAllEmployees() {
         $employee = new employees();
         return $employee->getAllEmployees();

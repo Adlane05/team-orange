@@ -43,7 +43,7 @@ class employees extends Model
     }
 
     public function deleteEmployee($employeeID) {
-        DB::delete("delete from employee where employee_id = (?)", [$employeeID]);
+        DB::delete("DELETE FROM employees WHERE employee_id = (?)", [$employeeID]);
     }
 
 }
