@@ -24,15 +24,11 @@ class Tag extends Model
     public function addTag() {
         if (isset($this->tagName)) {
             DB::insert('insert into tag (tag_name) values (?)', [$this->tagName]);
-        }   // MAKE SURE THIS CAN HANDLE UNIQUE CONSTRAINTS
+        }
     }
 
-    public function deleteTag() {
-        
-    }
-
-    public function updateTag() {
-
+    public function deleteTag($tagID) {
+        DB::delete("DELETE FROM tag WHERE tag_id = (?)", [$tagID]);
     }
 
     public function getTagID() {
@@ -44,4 +40,8 @@ class Tag extends Model
         return DB::select('select tag_id, tag_name from tag');
     }
 
+    public function getOneTag($tagID) {
+        $tag = DB::select('select tag_id, tag_name from tag where tag_id = (?)', ["$tagID"]);
+        return $tag;
+    }
 }

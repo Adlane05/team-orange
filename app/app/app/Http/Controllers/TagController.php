@@ -22,11 +22,9 @@ class TagController extends Controller
     public static function addTag(Request $request) {
         $data = self::verifyData($request);
 
-        $tagName = e($data["tag"]);
-        
         $tag = new Tag();
-        $tag->__constructWithParams($tagName);
-        $tag->addTag(); // DOES NOT CHECK IF CATEGORY NAME IS UNIQUE
+        $tag->__constructWithParams(reset($data));
+        $tag->addTag();
     }
 
     public static function getData() {
@@ -40,5 +38,16 @@ class TagController extends Controller
         $tag = new Tag();
         $tag->__constructWithParams($tagName);
         return $tag->getTagID();
+    }
+    
+    public static function deleteTag($tagID) {
+        $tag = new Tag();
+        $tag->deleteTag($tagID);
+    }
+
+    public static function getOneTag($tag) {
+        $tagID = e($tag);
+        $tag = new Tag();
+        return $tag->getOneTag($tagID)[0];
     }
 }

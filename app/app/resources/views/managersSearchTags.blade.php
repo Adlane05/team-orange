@@ -93,10 +93,9 @@
         <table style="margin-left:auto; margin-right:auto; border-collapse:collapse; width:900px; text-align:left;">
             <thead>
                 <tr style="border:1px solid black;">
-                    <td style="padding-left:10px; padding:10px; width:10vw">Tag ID</td>
-                    <td>Tag Name</td>
+                    <td style="padding-left:10px; padding:10px; width:10vw">Tag Name</td>
                     <td style="width:3vw; text-align:left">
-                        <a href = "/managers/create/others">
+                        <a href = "/managers/create/tags">
                             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; color:black;">
                                 add_circle
                             </span>
@@ -107,8 +106,7 @@
             <tbody>
                 @foreach ($tagInfo as $tag)
                 <tr style="border:1px solid black;">
-                <td style="padding-left:10px; padding:10px; width:10vw">{{$tag->tag_id}}</td>
-                <td>{{$tag->tag_name}}</td>
+                <td style="padding-left:10px; padding:10px; width:10vw">{{$tag->tag_name}}</td>
                 <form method="POST">
                     @csrf
                     <td style="width:3vw; text-align:left">

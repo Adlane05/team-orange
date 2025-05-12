@@ -98,6 +98,18 @@ Route::get('/managers/search/tags', function () {
     return view('managersSearchTags', ["tagInfo" => $tagInfo]);
 });
 
+Route::post('/managers/search/tags', function (Request $request) {
+    if(isset($request->delete)) {
+        TagController::deleteTag($request->delete);
+        return redirect()->to("managers/search/tags");
+    } else if (isset($request->update)) {
+        return redirect()->route('updateTags')->with("tag_id", $request->update);
+    } else {
+        $tagInfo = TagController::getData();
+        return view('managersSearchTags', ["tagInfo" => $tagInfo]);
+    }
+});
+
 Route::get('/managers/create/products', function () {
     $categories = CategoryController::getData();
     $tags = TagController::getData();
@@ -111,6 +123,30 @@ Route::post('/managers/create/products', function (Request $request) {
     ProductController::addProduct($request);
 
     return view('addProducts', ["categories" => $categories, "tags" => $tags]);
+});
+
+Route::get('/managers/create/tags', function () {
+    return view('addTags');
+});
+
+Route::post('/managers/create/tags', function (Request $request) {
+    TagController::addTag($request);
+    return view('addTags');
+});
+
+Route::get('/managers/update/tags', function() {
+    $tag = TagController::getOneTag(session("tag_id"));
+    return view('updateTags', ["tag" => $tag]);
+})->name("updateTags");
+
+Route::post('/managers/update/tags', function(Request $request) {
+    if(isset($request->originalTagCode)) {
+        TagController::deleteTag($request->originalTagCode);
+        TagController::addTag($request);
+        return redirect()->to("managers/search/tags");
+    } else {
+    return view('updateTags');
+    }
 });
 
 Route::get('/managers/create/others', function () {
