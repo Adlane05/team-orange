@@ -155,8 +155,15 @@ Route::get('/managers/search/categories', function () {
 });
 
 Route::Post('/managers/search/categories', function (Request $request) {
-    $categoryInfo = CategoryController::getData();
-    return view('managersSearchCategories', ["categoryInfo" => $categoryInfo]);
+    if(isset($request->delete)) {
+        CategoryController::deleteCategory($request->delete);
+        return redirect()->to("managers/search/categories");
+    } else if (isset($request->update)) {
+        return redirect()->route('updateCategories')->with("category_id", $request->update);
+    } else {
+        $categoryInfo = CategoryController::getData();
+        return view('managersSearchCategories', ["categoryInfo" => $categoryInfo]);
+    }
 });
 
 Route::get('/managers/create/categories', function () {
@@ -166,6 +173,21 @@ Route::get('/managers/create/categories', function () {
 Route::post('/managers/create/categories', function (Request $request) {
     CategoryController::addCategory($request);
     return view('addCategories');
+});
+
+Route::get('/managers/update/categories', function() {
+    $category = CategoryController::getOneCategory(session("category_id"));
+    return view('updateCategories', ["category" => $category]);
+})->name("updateCategories");
+
+Route::post('/managers/update/categories', function(Request $request) {
+    if(isset($request->originalCategoryCode)) {
+        CategoryController::deleteCategory($request->originalCategoryCode);
+        CategoryController::addCategory($request);
+        return redirect()->to("managers/search/categories");
+    } else {
+    return view('updateCategories');
+    }
 });
 
 Route::get('/managers/create/others', function () {

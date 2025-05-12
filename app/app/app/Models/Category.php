@@ -28,8 +28,8 @@ class Category extends Model
         }
     }
 
-    public function deleteCategory() {
-        
+    public function deleteCategory($categoryID) {
+        DB::delete("DELETE FROM category WHERE category_id = (?)", [$categoryID]);
     }
 
     public function updateCategory() {
@@ -45,5 +45,9 @@ class Category extends Model
         return DB::select('select category_id, category_name from category');
     }
 
+    public function getOneCategory($categoryID) {
+        $category = DB::select('select category_id, category_name from category where category_id = (?)', ["$categoryID"]);
+        return $category;   
+    }
 
 }

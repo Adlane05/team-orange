@@ -44,5 +44,15 @@ class CategoryController extends Controller
         return $category->getCategoryID();
     }
 
+    public static function deleteCategory($categoryID) {
+        $category = new Category();
+        $category->deleteCategory($categoryID);
+    }
+        
+    public static function getOneCategory($categoryid) {
+        $categoryID = e($categoryid);
+        $category = new Category();
+        return $category->getOneCategory($categoryID)[0];
+    }
 
 }
