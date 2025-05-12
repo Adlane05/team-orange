@@ -35,7 +35,7 @@
 
     
 <nav id="sidebar" style="width: 200px; background-color: black; color: white; height: 100%; padding-top: 20px; position: relative; float: left;">
-    <ul style="padding: 0; margin: 0; list-style-type: none;">
+<ul style="padding: 0; margin: 0; list-style-type: none;">
         <a href="/managers/search">
             <li>
                 <span>Products<span>
@@ -46,12 +46,12 @@
                 <span>Tags<span>
             </li>
         </a>
-        <a href="#">
+        <a href="/managers/search/categories">
             <li>
                 <span>Categories</span>
             </li>
         </a>
-        <a href="#">
+        <a href="/managers/search/employees">
             <li>
                 <span>Users</span>
             </li>

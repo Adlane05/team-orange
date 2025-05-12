@@ -32,4 +32,18 @@ class employees extends Model
         DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?,?)", [$this->employee_id, $this->user_name, $this->password_hash, "manager"]);
     }
 
+    public function getAllEmployees() {
+        $employees = DB::select("select employee_id, user_name, password_hash, role from employees");
+        return $employees;
+    }
+
+    public function getOneEmployee($employeeID) {
+        $employee = DB::select("select employee_id, user_name, password_hash, role from employees where employee_id = (?)", [$employeeID]);
+        return $employee;
+    }
+
+    public function deleteEmployee($employeeID) {
+        DB::delete("delete from employee where employee_id = (?)", [$employeeID]);
+    }
+
 }

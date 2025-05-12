@@ -190,8 +190,9 @@ Route::post('/managers/update/categories', function(Request $request) {
     }
 });
 
-Route::get('/managers/create/others', function () {
-    return view('addOthers');
+Route::get('/managers/search/employees', function () {
+    $employeeInfo = EmployeesController::getAllEmployees();
+    return view('managersSearchEmployees', ["employeeInfo" => $employeeInfo]);
 });
 
 

@@ -93,9 +93,11 @@
         <table style="margin-left:auto; margin-right:auto; border-collapse:collapse; width:900px; text-align:left;">
             <thead>
                 <tr style="border:1px solid black;">
-                    <td style="padding-left:10px; padding:10px; width:10vw">category Name</td>
+                    <td style="padding-left:10px; padding:10px; width:10vw">Employee ID</td>
+                    <td style="padding-left:10px; padding:10px; width:10vw">Employee Name</td>
+                    <td style="padding-left:10px; padding:10px; width:10vw">Employee Role</td>
                     <td style="width:3vw; text-align:left">
-                        <a href = "/managers/create/categories">
+                        <a href = "/managers/create/employees">
                             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; color:black;">
                                 add_circle
                             </span>
@@ -104,20 +106,22 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categoryInfo as $category)
+                @foreach ($employeeInfo as $employee)
                 <tr style="border:1px solid black;">
-                <td style="padding-left:10px; padding:10px; width:10vw">{{$category->category_name}}</td>
+                <td style="padding-left:10px; padding:10px; width:10vw">{{$employee->employee_id}}</td>
+                <td style="padding-left:10px; padding:10px; width:10vw">{{$employee->user_name}}</td>
+                <td style="padding-left:10px; padding:10px; width:10vw">{{$employee->role}}</td>
                 <form method="POST">
                     @csrf
                     <td style="width:3vw; text-align:left">
-                        <button type="submit" name="update" value="{{$category->category_id}}" style="all:unset; cursor:pointer">
+                        <button type="submit" name="update" value="{{$employee->employee_id}}" style="all:unset; cursor:pointer">
                             <a>
                                 <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
                                     edit
                                 </span>
                             </a>
                         </button>
-                        <button type="submit" name="delete" value="{{$category->category_id}}" style="all:unset; cursor:pointer">
+                        <button type="submit" name="delete" value="{{$employee->employee_id}}" style="all:unset; cursor:pointer">
                             <a>
                                 <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">
                                         delete

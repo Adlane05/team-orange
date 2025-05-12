@@ -20,6 +20,11 @@ class EmployeesController extends Controller
         }
     }
 
+    public static function getAllEmployees() {
+        $employee = new employees();
+        return $employee->getAllEmployees();
+    }
+
     private static function validateData(Request $request) {
         $validatedData = $request->validate([
             "username" => ["required"],
