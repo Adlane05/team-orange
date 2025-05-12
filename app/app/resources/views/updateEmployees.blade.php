@@ -73,14 +73,14 @@
             <form id="createUser" action="" method="POST"> 
             @csrf
                 <label for="employeeID" style="font-size:40px">Employee ID</label> <br>
-                <input type="text" name="employeeID" id="employeeID" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                <input type="text" name="employeeID" id="employeeID" value="{{$employee->employee_id}}" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
                 @if($errors->has('employeeID'))
                     <p style="height:1vh;">{{$errors->first('employeeID')}}</p>
                 @else
                 <p style="height:1vh;"></p>
                 @endif
                 <label for="username" style="font-size:40px">Employee Name</label> <br>
-                <input type="text" name="username" id="username" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                <input type="text" name="username" id="username" autocomplete="off" value="{{$employee->user_name}}" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
                 @if($errors->has('username'))
                     <p style="height:1vh;">{{$errors->first('username')}}</p>
                 @else
@@ -91,13 +91,21 @@
                 <br></br>
                 <label for="role" style="display: block; width: 100%; text-align: center; font-size:20px">Role</label>
                 <select id="role" name="role" style="border-radius:15px; border:3px solid black; height:4vh; width:14vw; padding:10px;">
-                    <option value="none" selected disabled hidden></option>
+                    @if($employee->role == "employee")
+                    <option value="employee" selected>Employee</option>
+                    @else
                     <option value="employee">Employee</option>
+                    @endif
+                    @if($employee->role == "manager")
+                    <option value="manager" selected/>Manager</option>
+                    @else
                     <option value="manager"/>Manager</option>
+                    @endif
                 </select>
+                <input type="hidden" value="{{$employee->employee_id}}" name="originalEmployeeCode">
                 <br>
                 <button type="submit" form="createUser" style="border-radius:25px; font-size:40px; height:6vh; width:15vw; margin-top: 2vh; background-color:red; color:white; font-weight:bold">
-                    Add User
+                    Update User
                 </button>
             </form>
         </div>

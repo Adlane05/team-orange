@@ -200,10 +200,26 @@ Route::post('/managers/search/employees', function (Request $request) {
         EmployeesController::deleteEmployee($request->delete);
         return redirect()->to("managers/search/employees");
     } else if (isset($request->update)) {
-        return redirect()->route('updateCategories')->with("category_id", $request->update);
+        return redirect()->route('updateEmployees')->with("employee_id", $request->update);
     } else {
         $employeeInfo = EmployeesController::getAllEmployees();
         return view('managersSearchEmployees', ["employeeInfo" => $employeeInfo]);
+    }
+});
+
+
+Route::get('/managers/update/employees', function() {
+    $employee = EmployeesController::getOneEmployee(session("employee_id"));
+    return view('updateEmployees', ["employee" => $employee]);
+})->name("updateEmployees");
+
+Route::post('/managers/update/employees', function(Request $request) {
+    if(isset($request->originalEmployeeCode)) {
+        EmployeesController::deleteEmployee($request->originalEmployeeCode);
+        EmployeesController::addEmployee($request);
+        return redirect()->to("managers/search/employees");
+    } else {
+    return view('updateEmployees');
     }
 });
 
