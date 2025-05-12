@@ -149,9 +149,29 @@ Route::post('/managers/update/tags', function(Request $request) {
     }
 });
 
+Route::get('/managers/search/categories', function () {
+    $categoryInfo = CategoryController::getData();
+    return view('managersSearchCategories', ["categoryInfo" => $categoryInfo]);
+});
+
+Route::Post('/managers/search/categories', function (Request $request) {
+    $categoryInfo = CategoryController::getData();
+    return view('managersSearchCategories', ["categoryInfo" => $categoryInfo]);
+});
+
+Route::get('/managers/create/categories', function () {
+    return view('addCategories');
+});
+
+Route::post('/managers/create/categories', function (Request $request) {
+    CategoryController::addCategory($request);
+    return view('addCategories');
+});
+
 Route::get('/managers/create/others', function () {
     return view('addOthers');
 });
+
 
 Route::post('/managers/create/others', function (Request $request) {
     if (isset($request['username'])) {

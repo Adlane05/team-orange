@@ -67,7 +67,7 @@
                 <span>Tags<span>
             </li>
         </a>
-        <a href="#">
+        <a href="/managers/search/categories">
             <li>
                 <span>Categories</span>
             </li>
