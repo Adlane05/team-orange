@@ -207,6 +207,14 @@ Route::post('/managers/search/employees', function (Request $request) {
     }
 });
 
+Route::get('/managers/create/employees', function () {
+    return view('addEmployees');
+});
+
+Route::post('/managers/create/employees', function (Request $request) {
+    EmployeesController::addEmployee($request);
+    return view('addEmployees');
+});
 
 Route::post('/managers/create/others', function (Request $request) {
     if (isset($request['username'])) {

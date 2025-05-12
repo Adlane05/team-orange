@@ -25,7 +25,7 @@ class employees extends Model
     }
 
     public function addEmployee() {
-        DB::insert("insert into employees(employee_id, user_name, role) values (?,?,?)", [$this->employee_id, $this->user_name, "employee"]);
+        DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?,?)", [$this->employee_id, $this->user_name, $this->password_hash, "employee"]);
     }
 
     public function addManager() {

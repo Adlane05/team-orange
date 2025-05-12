@@ -11,11 +11,12 @@ class EmployeesController extends Controller
     public static function addEmployee(Request $request) {
         $data = self::validateData($request);
         $employee = new employees();
-        $employee->setEmployeeID(e($data["username"]));
-        if (trim($data["password"]) == "" || $data["password"] == null) {
+        $employee->setEmployeeID(e($data["employeeID"]));
+        $employee->setPasswordHash(hash("sha256", e($data["password"])));
+        $employee->setUserName(e($data["username"]));
+        if (e($data["role"]) == "employee") {
             $employee->addEmployee();
-        } else {
-            $employee->setPasswordHash(hash("sha256", e($data["password"])));
+        } else if (e($data["role"]) == "manager"){
             $employee->addManager();
         }
     }
@@ -32,11 +33,14 @@ class EmployeesController extends Controller
 
     private static function validateData(Request $request) {
         $validatedData = $request->validate([
+            "employeeID" => ["required"],
             "username" => ["required"],
-            "password" => []
+            "password" => ["required"],
+            "role" => ["required"]
         ],
         [
-            "username.required" => "Employee ID cannot be empty",
+            "employeeID.required" => "Employee ID cannot be empty",
+            "username.required" => "Employee name cannot be empty",
         ]);
         return $validatedData;
     }
