@@ -14,6 +14,13 @@ Route::get('/login', function () {
     return redirect()->to('/employees/login')->send();
 });
 
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'fr'])) {
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
+    }
+    return redirect()->back();
+});
 
 Route::get('/employees/login', function () {
     return view('employeeLogin');
