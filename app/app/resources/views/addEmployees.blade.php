@@ -87,7 +87,7 @@
                 <p style="height:1vh;"></p>
                 @endif
                 <label for="password" style="font-size:40px">Password</label> <br>
-                <input type="password" name="password" id="password" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
+                <input type="text" name="password" id="password" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:14vw; padding:10px; font-size:24px;">
                 <br></br>
                 <label for="role" style="display: block; width: 100%; text-align: center; font-size:20px">Role</label>
                 <select id="role" name="role" style="border-radius:15px; border:3px solid black; height:4vh; width:14vw; padding:10px;">
