@@ -9,7 +9,26 @@
         tbody tr:nth-child(odd) {
             background-color:#adadad;
         }
-    </style><script>
+
+        * {
+            scrollbar-width:none;
+        }
+
+        #sidebar li {
+            padding: 10px 20px;
+        }
+
+        #sidebar li:hover {
+            background-color:#d9d9d9;
+            color:black;
+        }
+
+        #sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             const input = document.getElementById("productName");
             const rows = document.querySelectorAll("tbody tr");
@@ -27,8 +46,7 @@
 </head>
 
 <body style="margin:0px; height:100%; background-color:#d9d9d9; font-family: Helvetica, Sans-Serif;">
-
-    <div style="background-color:black; padding:10px;">
+<div style="background-color:black; padding:10px;">
         <header style="color:white;  display:flex; justify-content:space-between; ">
             <img src="/images/logo.png" style="height:50px; padding:15px">
                 <div>
@@ -38,6 +56,16 @@
             <button style="padding-right:30px; font-size:40px; font-weight:bold; color:white; background-color:black; border:none;">FR</button>
         </header>
     </div>
+
+<nav id="sidebar" style="width: 200px; background-color: black; color: white; height: 100%; padding-top: 20px; position: relative; float: left;">
+<ul style="padding: 0; margin: 0; list-style-type: none;">
+        <a href="/login">
+            <li>
+                <span>Logout</span>
+            </li>
+        </a>
+    </ul>
+  </nav>
 
     <div style="height:10%"></div>
 

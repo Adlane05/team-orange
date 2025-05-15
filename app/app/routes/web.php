@@ -14,13 +14,6 @@ Route::get('/login', function () {
     return redirect()->to('/employees/login')->send();
 });
 
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'fr'])) {
-        session(['locale' => $locale]);
-        app()->setLocale($locale);
-    }
-    return redirect()->back();
-});
 
 Route::get('/employees/login', function () {
     return view('employeeLogin');
@@ -65,11 +58,17 @@ Route::post('/managers/login', function (Request $request) {
     $input_password = e($validatedData["password"]);
 
     $employee = DB::table("employees")
-    ->where("role", "supervisor")
+    ->where("role", "manager")
     ->where("employee_id", $input_name)
-    ->where("password_hash", $input_password)
-    ->first(); // DOES NOT USE HASHING TO CHECK PASSWORD
-    // MAKE A NEW CLASS FOR EMPLOYEES SO THAT THIS DOESN'T HAPPEN HERE
+    ->where("password_hash", hash("sha256", $input_password))
+    ->first();
+
+    echo $input_name ."<br>";
+    echo $employee->role ."<br>";
+    echo $employee->employee_id ."<br>";
+    echo $employee->password_hash ."<br>";
+    echo $input_password ."<br>";
+    echo hash("SHA256", $input_password) ."<br>";
 
     if (isset($employee)) {
         return redirect()->to('managers/search')->send();
@@ -207,10 +206,26 @@ Route::post('/managers/search/employees', function (Request $request) {
         EmployeesController::deleteEmployee($request->delete);
         return redirect()->to("managers/search/employees");
     } else if (isset($request->update)) {
-        return redirect()->route('updateCategories')->with("category_id", $request->update);
+        return redirect()->route('updateEmployees')->with("employee_id", $request->update);
     } else {
         $employeeInfo = EmployeesController::getAllEmployees();
         return view('managersSearchEmployees', ["employeeInfo" => $employeeInfo]);
+    }
+});
+
+
+Route::get('/managers/update/employees', function() {
+    $employee = EmployeesController::getOneEmployee(session("employee_id"));
+    return view('updateEmployees', ["employee" => $employee]);
+})->name("updateEmployees");
+
+Route::post('/managers/update/employees', function(Request $request) {
+    if(isset($request->originalEmployeeCode)) {
+        EmployeesController::deleteEmployee($request->originalEmployeeCode);
+        EmployeesController::addEmployee($request);
+        return redirect()->to("managers/search/employees");
+    } else {
+    return view('updateEmployees');
     }
 });
 

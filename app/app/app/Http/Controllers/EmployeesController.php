@@ -31,6 +31,12 @@ class EmployeesController extends Controller
         return $employee->getAllEmployees();
     }
 
+    public static function getOneEmployee($employeeid) {
+        $employeeID = e($employeeid);
+        $employee = new employees();
+        return $employee->getOneEmployee($employeeID)[0];
+    }
+
     private static function validateData(Request $request) {
         $validatedData = $request->validate([
             "employeeID" => ["required"],
