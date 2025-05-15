@@ -21,7 +21,7 @@
         <form action="" method="POST" id="login">
             @csrf
             <label for="username" style="font-size:40px">Employee ID</label><br><br>
-            <input type="text" id="username" name="username" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:50px;">
+            <input type="text" id="username" name="username" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:50px; text-align:center;">
         </form>
     </div>
 
