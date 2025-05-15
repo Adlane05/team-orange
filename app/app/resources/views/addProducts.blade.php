@@ -115,12 +115,4 @@
             </div> 
         </form>
     </div>
-
-
-
-
-    
-
-    <div style="text-align:center;">
-        <a href="/managers/create/others" style="text-decoration:none; color:red; font-size:30px; font-weight:bold;">Add something else?<a>
-    </div>
+</body>
