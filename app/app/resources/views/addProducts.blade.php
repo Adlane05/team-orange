@@ -19,7 +19,7 @@
 
     <div style="text-align:center;">
         <button type="submit" form="create" style="border-radius:25px; font-size:40px; height:6vh; width:12vw; background-color:red; color:white; font-weight:bold;">
-            Submit      <!--    THIS FORM DOES NOT HAVE IMPLEMENTED FUNCTIONALITY, NO POST REQUEST HANDLING MADE YET    -->
+            Submit
         </button>
         @if($errors->has('productName'))
             <p style="height:1vh;">{{$errors->first('productName')}}</p>
