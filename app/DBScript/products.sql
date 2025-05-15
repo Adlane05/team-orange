@@ -708,3 +708,11 @@ values
 (3232, (select tag_id from tag where tag_name = "dog biscuit")),
 (12867, (select tag_id from tag where tag_name = "sold by each")),
 (12867, (select tag_id from tag where tag_name = "dog biscuit"));
+
+
+insert into employees(employee_id, user_name, password_hash, role)
+values
+(10253, "Trevor Dallas", "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8", "manager"),
+(44582, "Adlane", "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f", "manager"),
+(192868, "John Doe", "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", "employee"),
+(22805, "Mary Jane", "bef57ec7f53a6d40beb640a780a639c83bc29ac8a9816f1fc6c5c6dcd93c4721", "employee");
