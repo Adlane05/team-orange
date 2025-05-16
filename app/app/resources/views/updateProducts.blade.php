@@ -4,16 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            scrollbar-width:none;
+        }
+
+        #sidebar li {
+            padding: 10px 20px;
+        }
+
+        #sidebar li:hover {
+            background-color:#d9d9d9;
+            color:black;
+        }
+
+        #sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+  </style>
 </head>
 
 <body style="margin:0px; height:100%; width:100%; background-color:#d9d9d9; font-family: Helvetica, Sans-Serif;">
 
     <div style="background-color:black; padding:10px;">
-        <header style="color:white;  display:flex; justify-content:space-between; align-items:center">
+        <header style="color:white;  display:flex; justify-content:space-between; ">
             <img src="/images/logo.png" style="height:50px; padding:15px">
+                <div>
+                        <label for="productName" style="display: block; width: 100%; text-align: center; font-size:20px">Product Name</label>
+                        <input type="text" id="productName" name="productName" autocomplete="off" style="border-radius:15px; border:3px solid black; height:3vh; width:12vw; padding:10px; font-size:24px;">
+                </div>
             <button style="padding-right:30px; font-size:40px; font-weight:bold; color:white; background-color:black; border:none;">FR</button>
         </header>
     </div>
+
+<nav id="sidebar" style="width: 200px; background-color: black; color: white; height: 100%; padding-top: 20px; position: relative; float: left;">
+<ul style="padding: 0; margin: 0; list-style-type: none;">
+        <a href="/managers/search">
+            <li>
+                <span>Products<span>
+            </li>
+        </a>
+        <a href="/managers/search/tags">
+            <li>
+                <span>Tags<span>
+            </li>
+        </a>
+        <a href="/managers/search/categories">
+            <li>
+                <span>Categories</span>
+            </li>
+        </a>
+        <a href="/managers/search/employees">
+            <li>
+                <span>Users</span>
+            </li>
+        </a>
+        <a href="/managers/login">
+            <li>
+                <span>Logout</span>
+            </li>
+        </a>
+    </ul>
+  </nav>
 
     <div style="height:10%"></div>
 
