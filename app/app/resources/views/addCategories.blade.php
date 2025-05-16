@@ -68,6 +68,12 @@
     <div style="height:40%; background-color:black;"></div>
 
 
+    @if($categoryAdded)
+    <div style="height:5%; background-color:cyan; text-align:center; font-weight:bold; font-size:20px; display:block;">Category Added</div>
+    @else
+    <div style="height:5%;"></div>
+    @endif
+    
     <div style="text-align:center; display:flex; width:60%; margin-left:20%; margin-right:20%; margin-top:5vh;">
         <div style="width:20vw;"></div>
 

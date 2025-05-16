@@ -177,12 +177,14 @@ Route::Post('/managers/search/categories', function (Request $request) {
 });
 
 Route::get('/managers/create/categories', function () {
-    return view('addCategories');
+    $categoryAdded = False;
+    return view('addCategories', ["categoryAdded" => $categoryAdded]);
 });
 
 Route::post('/managers/create/categories', function (Request $request) {
+    $categoryAdded = True;
     CategoryController::addCategory($request);
-    return view('addCategories');
+    return view('addCategories', ["categoryAdded" => $categoryAdded]);
 });
 
 Route::get('/managers/update/categories', function() {
