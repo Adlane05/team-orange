@@ -22,7 +22,7 @@ class Tag extends Model
     }
 
     public function addTag() {
-        if (isset($this->tagName) && !($this->checkExists($this->tag_name))) {
+        if (isset($this->tagName) && ($this->checkExists($this->tag_name))) {
             DB::insert('insert into tag (tag_name) values (?)', [$this->tagName]);
         }
     }
