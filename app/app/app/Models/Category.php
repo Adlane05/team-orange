@@ -23,7 +23,7 @@ class Category extends Model
     }
 
     public function addCategory() {
-        if (isset($this->categoryName)) {
+        if (isset($this->categoryName) && ($this->checkExists($this->categoryName))) {
             DB::insert('insert into category (category_name) values (?)', [$this->categoryName]);
         }
     }
@@ -48,6 +48,11 @@ class Category extends Model
     public function getOneCategory($categoryID) {
         $category = DB::select('select category_id, category_name from category where category_id = (?)', ["$categoryID"]);
         return $category;   
+    }
+
+    private function checkExists($categoryName) {
+        $category = DB::select('select category_id from category where category_name = (?)', ["$categoryName"]);
+        return empty($category);
     }
 
 }
