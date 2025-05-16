@@ -134,12 +134,14 @@ Route::post('/managers/create/products', function (Request $request) {
 });
 
 Route::get('/managers/create/tags', function () {
-    return view('addTags');
+    $tagAdded = False;
+    return view('addTags', ["tagAdded" => $tagAdded]);
 });
 
 Route::post('/managers/create/tags', function (Request $request) {
     TagController::addTag($request);
-    return view('addTags');
+    $tagAdded = True;
+    return view('addTags', ["tagAdded" => $tagAdded]);
 });
 
 Route::get('/managers/update/tags', function() {

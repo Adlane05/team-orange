@@ -101,7 +101,6 @@
     <div style="height:60%; margin-left:15vw; margin-right:15vw; text-align:left; padding-top:3vh;">
         <form action="" method="POST" id="create">
             @csrf
-        <input type="hidden" value="True" name="productAdded">
             <div style="display:flex; justify-content:center;">
 
             <div style="width:min-content;">
