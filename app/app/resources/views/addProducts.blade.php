@@ -68,11 +68,16 @@
         </a>
     </ul>
   </nav>
+    @if($productAdded)
+    <div style="height:5%; background-color:cyan; text-align:center; font-weight:bold; font-size:20px; display:block;">Product Added</div>
+    @else
+    <div style="height:5%;"></div>
+    @endif
 
-    <div style="height:10%"></div>
+    <div style="height:5%;"></div>
 
-    <div style="text-align:center;">
-        <button type="submit" form="create" style="border-radius:25px; font-size:40px; height:6vh; width:12vw; background-color:red; color:white; font-weight:bold; text-align:center; margin-right:200px;">
+    <div style="text-align:center;  margin-right:200px;">
+        <button type="submit" form="create" style="border-radius:25px; font-size:40px; height:6vh; width:12vw; background-color:red; color:white; font-weight:bold; text-align:center;">
             Submit
         </button>
         @if($errors->has('productName'))
@@ -96,7 +101,7 @@
     <div style="height:60%; margin-left:15vw; margin-right:15vw; text-align:left; padding-top:3vh;">
         <form action="" method="POST" id="create">
             @csrf
-
+        <input type="hidden" value="True" name="productAdded">
             <div style="display:flex; justify-content:center;">
 
             <div style="width:min-content;">

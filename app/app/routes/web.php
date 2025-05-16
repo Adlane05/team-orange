@@ -119,16 +119,18 @@ Route::post('/managers/search/tags', function (Request $request) {
 Route::get('/managers/create/products', function () {
     $categories = CategoryController::getData();
     $tags = TagController::getData();
-    return view('addProducts', ["categories" => $categories, "tags" => $tags]);
+    $productAdded = False;
+    return view('addProducts', ["categories" => $categories, "tags" => $tags, "productAdded" => $productAdded]);
 });
 
 Route::post('/managers/create/products', function (Request $request) {
     $categories = CategoryController::getData();
     $tags = TagController::getData();
+    $productAdded = True;
 
     ProductController::addProduct($request);
 
-    return view('addProducts', ["categories" => $categories, "tags" => $tags]);
+    return view('addProducts', ["categories" => $categories, "tags" => $tags, "productAdded" => $productAdded]);
 });
 
 Route::get('/managers/create/tags', function () {
