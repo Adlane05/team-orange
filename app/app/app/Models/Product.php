@@ -29,11 +29,13 @@ class Product extends Model
     }
 
     public function addProduct() {
-        DB::insert('insert into product (product_id, product_name, category_id) values (?,?,?)', [$this->productCode, $this->productName, $this->categoryID]);
+        if ($this->checkExists($this->productCode, $this->productName)) {
+            DB::insert('insert into product (product_id, product_name, category_id) values (?,?,?)', [$this->productCode, $this->productName, $this->categoryID]);
 
-        if(count($this->tags) > 0) {
-            foreach($this->tags as $tag) {
-                DB::insert('insert into products_tag_pivot (product_id, tag_id) values (?,?)', [$this->productCode, $tag]);
+            if(count($this->tags) > 0) {
+                foreach($this->tags as $tag) {
+                    DB::insert('insert into products_tag_pivot (product_id, tag_id) values (?,?)', [$this->productCode, $tag]);
+                }
             }
         }
     }
@@ -77,7 +79,15 @@ class Product extends Model
         DB::delete("DELETE FROM product WHERE product_id = (?)", [$productID]);
     }
 
-    public function updateProduct() {
+    private function checkExists($productCode, $productName) {
+        $productName = DB::select('select product_id from product where product_name = (?)', ["$productName"]);
+        $productCode = DB::select('select product_id from product where product_id = (?)', ["$productCode"]);
+
+        if (empty($productName) && empty($productCode)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
