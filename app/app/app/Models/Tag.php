@@ -22,7 +22,7 @@ class Tag extends Model
     }
 
     public function addTag() {
-        if (isset($this->tagName)) {
+        if (isset($this->tagName) && !($this->checkExists($this->tag_name))) {
             DB::insert('insert into tag (tag_name) values (?)', [$this->tagName]);
         }
     }
@@ -43,5 +43,10 @@ class Tag extends Model
     public function getOneTag($tagID) {
         $tag = DB::select('select tag_id, tag_name from tag where tag_id = (?)', ["$tagID"]);
         return $tag;
+    }
+
+    private function checkExists($tagName) {
+        $tag = DB::select('select tag_id from tag where tag_name = (?)', ["$tagName"]);
+        return empty($tag);
     }
 }
