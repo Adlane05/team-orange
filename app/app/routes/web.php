@@ -236,12 +236,14 @@ Route::post('/managers/update/employees', function(Request $request) {
 });
 
 Route::get('/managers/create/employees', function () {
-    return view('addEmployees');
+    $userAdded = False;
+    return view('addEmployees', ["userAdded" => $userAdded]);
 });
 
 Route::post('/managers/create/employees', function (Request $request) {
     EmployeesController::addEmployee($request);
-    return view('addEmployees');
+    $userAdded = True;
+    return view('addEmployees', ["userAdded" => $userAdded]);
 });
 
 Route::post('/managers/create/others', function (Request $request) {

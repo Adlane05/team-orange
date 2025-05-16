@@ -67,6 +67,11 @@
   <main style="height:100%; margin-left: 200px;">
     <div style="height:30%; background-color:black;"></div>
 
+    @if($userAdded)
+    <div style="height:5%; background-color:cyan; text-align:center; font-weight:bold; font-size:20px; display:block;">User Added</div>
+    @else
+    <div style="height:5%;"></div>
+    @endif
 
     <div style="text-align:center; width:60%; margin-left:20%; margin-right:20%; margin-top:5vh;">
         <div style="padding-left:2vw;">
