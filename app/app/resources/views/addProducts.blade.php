@@ -72,7 +72,7 @@
     <div style="height:10%"></div>
 
     <div style="text-align:center;">
-        <button type="submit" form="create" style="border-radius:25px; font-size:40px; height:6vh; width:12vw; background-color:red; color:white; font-weight:bold;">
+        <button type="submit" form="create" style="border-radius:25px; font-size:40px; height:6vh; width:12vw; background-color:red; color:white; font-weight:bold; text-align:center; margin-right:200px;">
             Submit
         </button>
         @if($errors->has('productName'))
