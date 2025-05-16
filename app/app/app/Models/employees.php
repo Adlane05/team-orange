@@ -25,11 +25,15 @@ class employees extends Model
     }
 
     public function addEmployee() {
-        DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?,?)", [$this->employee_id, $this->user_name, $this->password_hash, "employee"]);
+        if ($this->checkExists($this->user_name, $this->employee_id)) {
+            DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?,?)", [$this->employee_id, $this->user_name, $this->password_hash, "employee"]);
+        }
     }
 
     public function addManager() {
-        DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?,?)", [$this->employee_id, $this->user_name, $this->password_hash, "manager"]);
+        if ($this->checkExists($this->user_name, $this->employee_id)) {
+            DB::insert("insert into employees(employee_id, user_name, password_hash, role) values (?,?,?,?)", [$this->employee_id, $this->user_name, $this->password_hash, "manager"]);
+        }
     }
 
     public function getAllEmployees() {
@@ -44,6 +48,18 @@ class employees extends Model
 
     public function deleteEmployee($employeeID) {
         DB::delete("DELETE FROM employees WHERE employee_id = (?)", [$employeeID]);
+    }
+
+    private function checkExists($user_name, $employee_id) {
+        $employeeName = DB::select('select employee_id from employees where user_name = (?)', ["$user_name"]);
+        $employeeID = DB::select('select employee_id from employees where employee_id = (?)', ["$employee_id"]);
+
+
+        if (empty($employeeName) && empty($employeeID)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
